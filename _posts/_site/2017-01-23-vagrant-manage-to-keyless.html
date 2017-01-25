@@ -1,0 +1,11 @@
+<p>sudo visudo</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Cmnd alias</span>
+<span class="no">Cmnd_Alias</span> <span class="no">VAGRANT_HOSTS</span> <span class="o">=</span> <span class="sr">/bin/</span><span class="n">cp</span> <span class="sr">/Users/</span><span class="no">Tuncay</span><span class="o">/</span><span class="p">.</span><span class="nf">vagrant</span><span class="p">.</span><span class="nf">d</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">hosts</span><span class="p">.</span><span class="nf">local</span> <span class="sr">/etc/</span><span class="n">hosts</span>
+<span class="c1"># User privilege</span>
+<span class="o">%</span><span class="n">sudo</span> <span class="no">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="no">NOPASSWD</span><span class="p">:</span> <span class="no">VAGRANT_HOSTS</span></code></pre></figure>
+
+<p>_ vagrant up</p>
+
+<p>#trick
+=&gt; for sudo style =&gt; alias _=”sudo” add in your shell profile..</p>

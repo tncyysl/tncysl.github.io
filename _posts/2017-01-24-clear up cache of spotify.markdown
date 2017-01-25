@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "clear up cache of spotify"
+title:  "clear up cache of spotify for osx"
 date:   Tue Jan 24 01:15:52 EET 2017
 categories: jekyll update
 ---
