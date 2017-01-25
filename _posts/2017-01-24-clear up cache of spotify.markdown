@@ -2,7 +2,6 @@
 layout: post
 title:  "clear up cache of spotify for osx"
 date:   Tue Jan 24 01:15:52 EET 2017
-title:  clear up cache of spotify
 categories: jekyll update
 ---
 
