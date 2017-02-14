@@ -15,3 +15,12 @@ find $HOME/Library/Caches/com.spotify.client/Data -type f -name "*.*" -size +1k 
 usefully tool "ncdu" for all disk space.
 
 #other way verbose rm -rfv
+
+also you can add on cronjob
+{% highlight ruby %}
+➜  ~ crontab -l
+#forspotify
+MAILTO="mail@tuncayuysal.com"
+0 22 * * 1-5 find $HOME/Library/Caches/com.spotify.client/Data -type f -name "*.*" -size +1k -exec echo {} \; -exec rm -rf {} \; > 1>/dev/null
+{% endhighlight %}
+
