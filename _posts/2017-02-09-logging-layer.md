@@ -2,6 +2,7 @@
 layout: post
 title:  "logging layer"
 date:   Thu Feb  9 17:03:32 +03 2017
+author: Tuncay UYSAL
 categories: jekyll update
 ---
 
@@ -9,7 +10,9 @@ categories: jekyll update
 
 
 
-* Step One
+* # Step One
+
+> be ready for pre-installation previously
 
 {% highlight ruby %}
 
@@ -17,16 +20,21 @@ nano /etc/syslog.conf
 *.*                     @127.0.0.1:5000
 sudo killall -HUP syslogd
 
-{% endhighlight %}
----
+Apple Script logs (asl)
+/etc/asl.conf
 
-* Step Two
+Audit logs
+/etc/security/audit_control
+
+{% endhighlight %}
+
+* # Step Two
 
  brew install elasticsearch logstash kibana
 
 > list of caveats
 
-{% highlight ruby linenos %}
+{% highlight bash linenos %}
 Data:    /usr/local/var/elasticsearch/elasticsearch_Tuncay/
 Logs:    /usr/local/var/log/elasticsearch/elasticsearch_Tuncay.log
 Plugins: /usr/local/opt/elasticsearch/libexec/plugins/
@@ -56,52 +64,61 @@ you can take info anytime > brew info package
 
 {% endhighlight %}
 
----
+* # Step Three
 
-#to read a specific file
-sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl
-#to see all sudo usage
-sudo /usr/bin/syslog -k Sender sudo
-#to see all critical messages
-sudo /usr/bin/syslog -k Level Nle 2
+* # Tricks
+
+> #to read a specific file
+
+`sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl`
+
+> #to see all sudo usage
+
+`sudo /usr/bin/syslog -k Sender sudo`
+
+> #to see all critical messages
+
+`sudo /usr/bin/syslog -k Level Nle 2`
 
 SEVERITY LOGGING LEVEL
-0 Emergency
-1 Alert
-2 Critical
-3 Error
-4 Warning
-5 Notice
-6 Informational informational messages
-7 Debug debug-level messages
+: 0 Emergency
+: 1 Alert
+: 2 Critical
+: 3 Error
+: 4 Warning
+: 5 Notice
+: 6 Informational informational messages
+: 7 Debug debug-level messages
 
-
+<p> </p>
 
 AUDIT REDUCE
-auditreduce -- select records from audit trail files #show all activity from root
-sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail
-#show user authentication activity
-sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit
-#show logins
-sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit
-#show logouts
-sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit
+: auditreduce -- select records from audit trail files
 
+> #show all activity from root
 
-CONFIGURATION
-Most logs have a configuration file, including retention policies System log files:
-/etc/syslog.conf
-Apple System Logs:
-/etc/asl.conf
-Audit Logs:
-/etc/security/audit_control
+`sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail`
 
+> #show user authentication activity
 
-System Log files main folder: /var/log/ 
-Apple System Log: /var/log/asl/* 
-Audit Log: /var/audit/*
-User Logs: ~/Library/Logs 
-Application Logs: /Library/Logs
+`sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit`
+
+> #show logins
+
+`sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit`
+
+> #show logouts
+
+`sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit`
+
+<p> </p>
+
+SYSTEM LOG FILES
+: **Main folder:** /var/log/
+: **Apple System Log:** /var/log/asl/
+: **Audit Log:** /var/audit/
+: **User Logs:** ~/Library/Logs/ 
+: **Application Logs:** /Library/Logs/
 
 ---
 

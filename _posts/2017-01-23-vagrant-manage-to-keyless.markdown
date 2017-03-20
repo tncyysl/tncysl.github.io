@@ -2,6 +2,7 @@
 layout: post
 title:  "vagrant manage keyless"
 date:   Mon Jan 23 18:19:25 EET 2017
+author: Tuncay UYSAL
 categories: jekyll update
 ---
 
