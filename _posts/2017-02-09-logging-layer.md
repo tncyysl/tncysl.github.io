@@ -12,9 +12,9 @@ categories: jekyll update
 
 * # Step One
 
-> be ready for pre-installation previously
+ be ready for pre-installation previously
 
-{% highlight ruby %}
+{% highlight bash %}
 
 nano /etc/syslog.conf
 *.*                     @127.0.0.1:5000
@@ -28,13 +28,21 @@ Audit logs
 
 {% endhighlight %}
 
+**however** i'll make catch system events with `collectd`
+
+```
+brew install collectd
+nano /usr/local/Cellar/collectd/5.7.1/etc/collectd.conf
+
+```
+
 * # Step Two
 
  brew install elasticsearch logstash kibana
 
-> list of caveats
+ list of caveats
 
-{% highlight bash linenos %}
+{% highlight text linenos %}
 Data:    /usr/local/var/elasticsearch/elasticsearch_Tuncay/
 Logs:    /usr/local/var/log/elasticsearch/elasticsearch_Tuncay.log
 Plugins: /usr/local/opt/elasticsearch/libexec/plugins/
@@ -60,7 +68,7 @@ Or, if you don't want/need a background service you can just run:
   kibana
 
 
-you can take info anytime > brew info package
+you can take info anytime => brew info package
 
 {% endhighlight %}
 
@@ -68,15 +76,15 @@ you can take info anytime > brew info package
 
 * # Tricks
 
-> #to read a specific file
+#to read a specific file
 
 `sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl`
 
-> #to see all sudo usage
+#to see all sudo usage
 
 `sudo /usr/bin/syslog -k Sender sudo`
 
-> #to see all critical messages
+#to see all critical messages
 
 `sudo /usr/bin/syslog -k Level Nle 2`
 
@@ -95,23 +103,25 @@ SEVERITY LOGGING LEVEL
 AUDIT REDUCE
 : auditreduce -- select records from audit trail files
 
-> #show all activity from root
+#show all activity from root
 
 `sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail`
 
-> #show user authentication activity
+#show user authentication activity
 
 `sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit`
 
-> #show logins
+#show logins
 
 `sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit`
 
-> #show logouts
+#show logouts
 
 `sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit`
 
-<p> </p>
+<p> </p>  https://github.com/lmenezes/elasticsearch-kopf
+
+https://mtalavera.wordpress.com/2015/02/16/monitoring-with-collectd-and-kibana/  
 
 SYSTEM LOG FILES
 : **Main folder:** /var/log/

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>rtm netdata</title>
-  <meta name="description" content="i’ll share beauty &amp;amp; modern real time monitoring tool..">
+  <title>deploy php app with heroku</title>
+  <meta name="description" content="brew tap homebrew/services">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/01/25/netdata.html">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/03/26/deploy-php-app-with-heroku.html">
   <link rel="alternate" type="application/rss+xml" title="full stack engineer" href="/feed.xml">
   
   
@@ -61,65 +61,30 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">rtm netdata</h1>
-    <p class="post-meta"><time datetime="2017-01-25T11:41:59+03:00" itemprop="datePublished">Jan 25, 2017</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Tuncay UYSAL</span></span></p>
+    <h1 class="post-title" itemprop="name headline">deploy php app with heroku</h1>
+    <p class="post-meta"><time datetime="2017-03-26T17:13:40+03:00" itemprop="datePublished">Mar 26, 2017</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Tuncay UYSAL</span></span></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <blockquote>
-  <p>i’ll share beauty &amp; modern real time monitoring tool..</p>
-</blockquote>
+    <p><code class="highlighter-rouge">brew tap homebrew/services</code></p>
 
-<hr />
-<p><strong>for mac osx</strong></p>
+<p><code class="highlighter-rouge">brew install homebrew/php/php71 --with-postgresql</code> <strong>=&gt;</strong> `brew options php71</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">#install required packages
-brew install ossp-uuid autoconf automake pkg-config
+<p><code class="highlighter-rouge">brew install composer</code></p>
 
-#download
-git clone https://github.com/firehol/netdata.git
+<p><code class="highlighter-rouge">brew install heroku</code></p>
 
-#install
-sudo ./netdata-installer.sh --install ~/opt
+<div class="highlighter-rouge"><pre class="highlight"><code>heroku login
+git clone https://github.com/heroku/php-getting-started.git
+cd php-getting-started.git
+heroku create
+git push heroku master
+heroku open
+heroku logs --tail
+</code></pre>
+</div>
 
-localhost:19999
-
-cd ~/opt/netdata &amp;&amp; tree -a
-
-ln -s  ~/opt/netdata/usr/sbin/netdata /usr/local/bin/
-    killall netdata
-    pidof netdata
-    netdata</code></pre></figure>
-
-<p><strong>for linux</strong></p>
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' &gt;/tmp/kickstart.sh &amp;&amp; bash /tmp/kickstart.sh -i netdata-all
-
-git clone https://github.com/firehol/netdata.git --depth=1
-
-cd netdata
-
-sudo ./netdata-installer.sh
-
-   - the daemon    at /usr/sbin/netdata
-   - config files  at /etc/netdata
-   - web files     at /usr/share/netdata
-   - plugins       at /usr/libexec/netdata
-   - cache files   at /var/cache/netdata
-   - db files      at /var/lib/netdata
-   - log files     at /var/log/netdata
-   - pid file      at /var/run
-
-
-
-http://127.0.0.1:19999/netdata.conf &gt; for configuration (for keeping more history data etc.)
-
-http://your.netdata:19999/tv.html
-
-netdata -h command list</code></pre></figure>
-
-<p>Check out the <a href="https://github.com/firehol/netdata/releases">release-page</a> for more info..</p>
-
+<p>https://devcenter.heroku.com/articles/getting-started-with-php#define-a-procfile</p>
 
   </div>
 

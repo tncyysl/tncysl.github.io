@@ -72,19 +72,25 @@
   </li>
 </ul>
 
-<blockquote>
-  <p>be ready for pre-installation previously</p>
-</blockquote>
+<p>be ready for pre-installation previously</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">nano</span> <span class="sr">/etc/s</span><span class="n">yslog</span><span class="p">.</span><span class="nf">conf</span>
-<span class="o">*</span><span class="p">.</span><span class="nf">*</span>                     <span class="err">@</span><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">5000</span>
-<span class="n">sudo</span> <span class="n">killall</span> <span class="o">-</span><span class="no">HUP</span> <span class="n">syslogd</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">nano /etc/syslog.conf
+<span class="k">*</span>.<span class="k">*</span>                     @127.0.0.1:5000
+sudo killall -HUP syslogd
 
-<span class="no">Apple</span> <span class="no">Script</span> <span class="n">logs</span> <span class="p">(</span><span class="n">asl</span><span class="p">)</span>
-<span class="sr">/etc/</span><span class="n">asl</span><span class="p">.</span><span class="nf">conf</span>
+Apple Script logs <span class="o">(</span>asl<span class="o">)</span>
+/etc/asl.conf
 
-<span class="no">Audit</span> <span class="n">logs</span>
-<span class="sr">/etc/se</span><span class="n">curity</span><span class="o">/</span><span class="n">audit_control</span></code></pre></figure>
+Audit logs
+/etc/security/audit_control</code></pre></figure>
+
+<p><strong>however</strong> i’ll make catch system events with <code class="highlighter-rouge">collectd</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>brew install collectd
+nano /usr/local/Cellar/collectd/5.7.1/etc/collectd.conf
+
+</code></pre>
+</div>
 
 <ul>
   <li>
@@ -94,11 +100,9 @@
 
 <p>brew install elasticsearch logstash kibana</p>
 
-<blockquote>
-  <p>list of caveats</p>
-</blockquote>
+<p>list of caveats</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
 2
 3
 4
@@ -131,7 +135,7 @@ plugin script: /usr/local/opt/elasticsearch/libexec/bin/elasticsearch-plugin
 
 To have launchd start elasticsearch now and restart at login:
   brew services start elasticsearch
-Or, <span class="k">if </span>you don<span class="s1">'t want/need a background service you can just run:
+Or, if you don't want/need a background service you can just run:
   elasticsearch
 
 Please read the getting started guide located at:
@@ -144,11 +148,11 @@ new keg location after upgrading.
 
 To have launchd start kibana now and restart at login:
   brew services start kibana
-Or, if you don'</span>t want/need a background service you can just run:
+Or, if you don't want/need a background service you can just run:
   kibana
 
 
-you can take info anytime &gt; brew info package<span class="w">
+you can take info anytime =&gt; brew info package<span class="w">
 </span></pre></td></tr></tbody></table></code></pre></figure>
 
 <ul>
@@ -160,21 +164,15 @@ you can take info anytime &gt; brew info package<span class="w">
   </li>
 </ul>
 
-<blockquote>
-  <p>#to read a specific file</p>
-</blockquote>
+<p>#to read a specific file</p>
 
 <p><code class="highlighter-rouge">sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl</code></p>
 
-<blockquote>
-  <p>#to see all sudo usage</p>
-</blockquote>
+<p>#to see all sudo usage</p>
 
 <p><code class="highlighter-rouge">sudo /usr/bin/syslog -k Sender sudo</code></p>
 
-<blockquote>
-  <p>#to see all critical messages</p>
-</blockquote>
+<p>#to see all critical messages</p>
 
 <p><code class="highlighter-rouge">sudo /usr/bin/syslog -k Level Nle 2</code></p>
 
@@ -197,31 +195,26 @@ you can take info anytime &gt; brew info package<span class="w">
   <dd>auditreduce – select records from audit trail files</dd>
 </dl>
 
-<blockquote>
-  <p>#show all activity from root</p>
-</blockquote>
+<p>#show all activity from root</p>
 
 <p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail</code></p>
 
-<blockquote>
-  <p>#show user authentication activity</p>
-</blockquote>
+<p>#show user authentication activity</p>
 
 <p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit</code></p>
 
-<blockquote>
-  <p>#show logins</p>
-</blockquote>
+<p>#show logins</p>
 
 <p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit</code></p>
 
-<blockquote>
-  <p>#show logouts</p>
-</blockquote>
+<p>#show logouts</p>
 
 <p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit</code></p>
 
 <p> </p>
+<p>https://github.com/lmenezes/elasticsearch-kopf</p>
+
+<p>https://mtalavera.wordpress.com/2015/02/16/monitoring-with-collectd-and-kibana/</p>
 
 <dl>
   <dt>SYSTEM LOG FILES</dt>
@@ -284,8 +277,7 @@ you can take info anytime &gt; brew info package<span class="w">
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. tuncay
-</p>
+        <p></p>
       </div>
     </div>
 

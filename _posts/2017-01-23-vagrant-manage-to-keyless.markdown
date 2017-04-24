@@ -9,7 +9,7 @@ categories: jekyll update
 sudo visudo 
 
 
-{% highlight ruby %}
+{% highlight text %}
 # Cmnd alias
 Cmnd_Alias VAGRANT_HOSTS = /bin/cp /Users/Tuncay/.vagrant.d/tmp/hosts.local /etc/hosts
 # User privilege
@@ -21,4 +21,7 @@ _ vagrant up
 
 
 #trick
-=> for sudo style => alias _="sudo" add in your shell profile..
+for sudo style `alias _="sudo"` add in your shell profile..
+
+if you don't want to enter a password for sudo always..
+`Tuncay ALL=(ALL) NOPASSWD:ALL`
