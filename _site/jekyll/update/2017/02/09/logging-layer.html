@@ -159,6 +159,70 @@ you can take info anytime =&gt; brew info package<span class="w">
   <li>
     <h1 id="step-three">Step Three</h1>
   </li>
+</ul>
+
+<p>start of services</p>
+
+<p><code class="highlighter-rouge">logstash -f /Users/Tuncay/Amazon Drive/logstash.conf</code></p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td><td class="code"><pre>input {
+    udp {
+        port =&gt; 5000
+        type =&gt; syslog
+    }
+}
+
+
+filter {
+    if [type] == "syslog" {
+        grok {
+            match =&gt; { "message" =&gt; "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+            add_field =&gt; [ "received_at", "%{@timestamp}" ]
+            add_field =&gt; [ "received_from", "%{host}" ]
+        }
+        syslog_pri { }
+        date {
+            match =&gt; [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+        }
+    }
+}
+
+
+output {
+    elasticsearch { 
+      hosts =&gt; ["localhost:9200"] 
+    }
+}<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<ul>
   <li>
     <h1 id="tricks">Tricks</h1>
   </li>

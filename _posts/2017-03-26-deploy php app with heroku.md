@@ -8,7 +8,7 @@ categories: jekyll update
 
 `brew tap homebrew/services`
 
-`brew install homebrew/php/php71 --with-postgresql` **=>** `brew options php71
+`brew install homebrew/php/php71 --with-postgresql` **=>** `brew options php71`
 
 `brew install composer`
 
