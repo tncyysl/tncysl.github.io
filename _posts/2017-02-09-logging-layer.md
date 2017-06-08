@@ -20,12 +20,6 @@ nano /etc/syslog.conf
 *.*                     @127.0.0.1:5000
 sudo killall -HUP syslogd
 
-Apple Script logs (asl)
-/etc/asl.conf
-
-Audit logs
-/etc/security/audit_control
-
 {% endhighlight %}
 
 **however** i'll make catch system events with `collectd`
@@ -114,52 +108,9 @@ output {
 
 * # Tricks
 
-#to read a specific file
-
-`sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl`
-
-#to see all sudo usage
-
-`sudo /usr/bin/syslog -k Sender sudo`
-
-#to see all critical messages
-
-`sudo /usr/bin/syslog -k Level Nle 2`
-
-SEVERITY LOGGING LEVEL
-: 0 Emergency
-: 1 Alert
-: 2 Critical
-: 3 Error
-: 4 Warning
-: 5 Notice
-: 6 Informational informational messages
-: 7 Debug debug-level messages
-
 <p> </p>
 
-AUDIT REDUCE
-: auditreduce -- select records from audit trail files
-
-#show all activity from root
-
-`sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail`
-
-#show user authentication activity
-
-`sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit`
-
-#show logins
-
-`sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit`
-
-#show logouts
-
-`sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit`
-
-<p> </p>  https://github.com/lmenezes/elasticsearch-kopf
-
-https://mtalavera.wordpress.com/2015/02/16/monitoring-with-collectd-and-kibana/  
+<p> </p>
 
 SYSTEM LOG FILES
 : **Main folder:** /var/log/
@@ -170,6 +121,7 @@ SYSTEM LOG FILES
 
 ---
 
-for [reference]
+for [reference] and [list of tools]
 
 [reference]: http://macadmins.psu.edu/wp-content/uploads/sites/24696/2016/06/psumac2016-19-osxlogs_macadmins_2016.pdf
+[list of tools]: https://stackify.com/best-log-management-tools/

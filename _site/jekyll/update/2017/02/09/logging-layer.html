@@ -76,13 +76,7 @@
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">nano /etc/syslog.conf
 <span class="k">*</span>.<span class="k">*</span>                     @127.0.0.1:5000
-sudo killall -HUP syslogd
-
-Apple Script logs <span class="o">(</span>asl<span class="o">)</span>
-/etc/asl.conf
-
-Audit logs
-/etc/security/audit_control</code></pre></figure>
+sudo killall -HUP syslogd</code></pre></figure>
 
 <p><strong>however</strong> i’ll make catch system events with <code class="highlighter-rouge">collectd</code></p>
 
@@ -228,57 +222,9 @@ output {
   </li>
 </ul>
 
-<p>#to read a specific file</p>
-
-<p><code class="highlighter-rouge">sudo /usr/bin/syslog -f /private/var/log/asl/2015.11.20.G80.asl</code></p>
-
-<p>#to see all sudo usage</p>
-
-<p><code class="highlighter-rouge">sudo /usr/bin/syslog -k Sender sudo</code></p>
-
-<p>#to see all critical messages</p>
-
-<p><code class="highlighter-rouge">sudo /usr/bin/syslog -k Level Nle 2</code></p>
-
-<dl>
-  <dt>SEVERITY LOGGING LEVEL</dt>
-  <dd>0 Emergency</dd>
-  <dd>1 Alert</dd>
-  <dd>2 Critical</dd>
-  <dd>3 Error</dd>
-  <dd>4 Warning</dd>
-  <dd>5 Notice</dd>
-  <dd>6 Informational informational messages</dd>
-  <dd>7 Debug debug-level messages</dd>
-</dl>
-
 <p> </p>
 
-<dl>
-  <dt>AUDIT REDUCE</dt>
-  <dd>auditreduce – select records from audit trail files</dd>
-</dl>
-
-<p>#show all activity from root</p>
-
-<p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -e root /var/audit/current | praudit | tail</code></p>
-
-<p>#show user authentication activity</p>
-
-<p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_auth_user, /var/audit/current | praudit</code></p>
-
-<p>#show logins</p>
-
-<p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_lw_login, /var/audit/current | praudit</code></p>
-
-<p>#show logouts</p>
-
-<p><code class="highlighter-rouge">sudo /usr/sbin/auditreduce -m AUE_logout /var/audit/current | praudit</code></p>
-
 <p> </p>
-<p>https://github.com/lmenezes/elasticsearch-kopf</p>
-
-<p>https://mtalavera.wordpress.com/2015/02/16/monitoring-with-collectd-and-kibana/</p>
 
 <dl>
   <dt>SYSTEM LOG FILES</dt>
@@ -291,7 +237,7 @@ output {
 
 <hr />
 
-<p>for <a href="http://macadmins.psu.edu/wp-content/uploads/sites/24696/2016/06/psumac2016-19-osxlogs_macadmins_2016.pdf">reference</a></p>
+<p>for <a href="http://macadmins.psu.edu/wp-content/uploads/sites/24696/2016/06/psumac2016-19-osxlogs_macadmins_2016.pdf">reference</a> and <a href="https://stackify.com/best-log-management-tools/">list of tools</a></p>
 
 
   </div>
